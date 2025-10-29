@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import CustomBtn from './CustomBtn';
 import {  SignInButton,  SignedOut, SignedIn,UserButton, } from '@clerk/nextjs';
 
@@ -25,7 +25,7 @@ const menuOptions = [
         <div className='flex '>
           {menuOptions.map((menu,index) => (
             <Button key={index} variant='ghost' className='cursor-pointer text-blue-200 hover:text-black mx-2'>
-              {menu.name}
+              <Link href={menu.link}>{menu.name}</Link>
             </Button>
           ))}
            

@@ -5,6 +5,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Brush, ImagePlus, ShoppingCart, ClipboardList, Users, ChartBar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SignInButton } from '@clerk/nextjs';
+import Marquee from './Marquee';
+
 
 const Hero = () => {
 
@@ -27,13 +29,47 @@ const Hero = () => {
   }
   ];
   const[userInput, setUserInput] = useState<string>();
-
+    const skillList = [
+  {
+    name: 'JavaScript',
+    logo: 'https://ik.imagekit.io/cpnw7c0xpe/Tailwind%20Components/icon-javscript.png?updatedAt=1730199511694',
+  },
+  {
+    name: 'TypeScript',
+    logo: 'https://ik.imagekit.io/cpnw7c0xpe/Tailwind%20Components/icon-typescript.png?updatedAt=1730199511629',  
+  },
+  {
+    name: 'React.js',
+    logo: 'https://ik.imagekit.io/cpnw7c0xpe/Tailwind%20Components/icon-react.png?updatedAt=1730199511618',
+  },
+  {
+    name: 'Next.js',
+    logo: 'https://ik.imagekit.io/cpnw7c0xpe/Tailwind%20Components/icon-nextjs.png?updatedAt=1730199511621',
+  },
+  {
+    name: 'Node.js',
+    logo: 'https://ik.imagekit.io/cpnw7c0xpe/Tailwind%20Components/icon-nodejs.png?updatedAt=1730199511721',
+  },
+  {
+    name: 'Express.js',
+    logo: 'https://ik.imagekit.io/cpnw7c0xpe/Tailwind%20Components/icon-express.png?updatedAt=1730199511600',
+  },
+  {
+    name: 'Nest.js',
+    logo: 'https://ik.imagekit.io/cpnw7c0xpe/Tailwind%20Components/icon-nest.png?updatedAt=1730199511689',
+  },
+  {
+    name: 'Socket.io',
+    logo: 'https://ik.imagekit.io/cpnw7c0xpe/Tailwind%20Components/icon-socket.png?updatedAt=1730199511649',
+  },
+]
 
 
   return (
+    
     <div className='flex flex-col items-center justify-center m-auto w-full h-[80vh]'>
   <h2 className='text-center z-50 text-5xl text-white font-bold py-3.5'>Start your Next SAAS Product</h2>
-  <p className='text-center z-50 text-lg text-white py-3.5'>Generate.Design.Deploy</p>
+  <p className='text-center z-50 text-lg text-white py-3.5'>Generate. Design.      Deploy.</p>
   
   <div className='w-7xl p-5 border rounded-2xl bg-gradient-to-r from-slate-900 to-slate-700'>
    <Textarea
@@ -62,6 +98,10 @@ const Hero = () => {
       </Button>
     ))}
   </div>
+  <div  className='mt-8'>
+    <Marquee skills={skillList} />
+  </div>
+
 </div>
   )
 }
