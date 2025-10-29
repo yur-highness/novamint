@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import { Textarea } from '@/components/ui/textarea';
-import { ArrowUp, ImagePlus, ShoppingCart, ClipboardList, Users, ChartBar } from 'lucide-react';
+import { Brush, ImagePlus, ShoppingCart, ClipboardList, Users, ChartBar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { SignInButton } from '@clerk/nextjs';
 
 const Hero = () => {
 
@@ -34,14 +35,21 @@ const Hero = () => {
   <h2 className='text-center z-50 text-5xl text-white font-bold py-3.5'>Start your Next SAAS Product</h2>
   <p className='text-center z-50 text-lg text-white py-3.5'>Generate.Design.Deploy</p>
   
-  <div className='w-7xl p-5 border rounded-2xl'>
-    <Textarea 
-    value={userInput}
-    onChange={(e) => setUserInput(e.target.value)}
-    className='w-full h-42 text-white py-3.5 mt-4 border-none resize-none focus:outline-none focus:ring-0' placeholder='Describe your idea...'></Textarea>
+  <div className='w-7xl p-5 border rounded-2xl bg-gradient-to-r from-slate-900 to-slate-700'>
+   <Textarea
+  value={userInput}
+  onChange={(e) => setUserInput(e.target.value)}
+  className='w-full h-42 text-white py-3.5 mt-4 border-none outline-none resize-none 
+             bg-gradient-to-r from-slate-900 to-slate-700
+             focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0'
+  placeholder='Describe your idea...'
+/>
+
     <div className='mt-1 py-2 flex justify-between items-center'>
       <Button variant='ghost'><ImagePlus /></Button>
-      <Button variant='ghost'><ArrowUp /></Button>
+      <SignInButton mode="modal" forceRedirectUrl={'/workspace'}>
+      <Button variant='ghost' disabled={!userInput}><Brush /></Button>
+      </SignInButton>
       </div>
   </div>
   <div className='flex mt-4'>
