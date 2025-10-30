@@ -67,7 +67,7 @@ const Hero = () => {
 
   return (
     
-    <div className='flex flex-col items-center justify-center m-auto w-full h-[80vh]'>
+    <div className='flex flex-col items-center justify-center m-auto w-full h-[100vh]'>
   <h2 className='text-center z-50 text-5xl text-white font-bold py-3.5'>Start your Next SAAS Product</h2>
   <p className='text-center z-50 text-lg text-white py-3.5'>Generate. Design.      Deploy.</p>
   

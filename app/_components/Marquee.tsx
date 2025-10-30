@@ -75,7 +75,7 @@ const Marquee: React.FC<MarqueeProps> = ({ skills = skillList }) => {
   }, [windowWidth])
 
   return (
-    <div className="relative overflow-x-hidden bg-transparent">
+    <div className="relative overflow-x-hidden bg-transparent mt-8">
       <div id="skills" className="w-max whitespace-nowrap p-5 lg:p-7" ref={skillsElementRef}>
         <div className="flex gap-8 lg:gap-24">
           {skills.map(({ name, logo }, index) => (
