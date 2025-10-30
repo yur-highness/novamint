@@ -8,8 +8,12 @@ import { eq } from "drizzle-orm";
 export async function POST(req:NextRequest) {
     const  user = await currentUser();
     
+    const email = user?.primaryEmailAddress?.emailAddress;
+    if (!email) {
+        return NextResponse.json({ error: "No email on current user" }, { status: 400 });
+    }
     
-    const userResult = await db.select().from(usersTable).where(eq(usersTable.email, user?.primaryEmailAddress?.emailAddress));
+    const userResult = await db.select().from(usersTable).where(eq(usersTable.email, email));
 
 
     //if user does not exist, create a new user
