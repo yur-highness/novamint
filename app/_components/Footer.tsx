@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -14,8 +15,9 @@ const Footer = () => {
     className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40"
   ></span>
   <div className="flex items-center">
-    
+    <Link href='/workspace'>
     <span className="ml-1 text-white text-xs">Start 3 Days Free Try</span>
+    </Link>
   </div>
 
 </button>

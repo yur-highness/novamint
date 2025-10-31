@@ -5,8 +5,10 @@ import { usersTable } from "@/config/schema";
 import { eq } from "drizzle-orm";
 
 
+
 export async function POST(req:NextRequest) {
     const  user = await currentUser();
+   
     
     const email = user?.primaryEmailAddress?.emailAddress;
     if (!email) {
@@ -18,15 +20,18 @@ export async function POST(req:NextRequest) {
 
     //if user does not exist, create a new user
     if(userResult.length === 0) {
-        
-
-
-        const newUser = await db.insert(usersTable).values({
+        const data  = {
             email: user?.primaryEmailAddress?.emailAddress ?? "",
             name: user?.fullName ?? "NA",
-        });
+            credits:2,
     }
+        const result = await db.insert(usersTable).values({
+          ...data
+        })
+        return NextResponse.json({ user: data });
+    } ;
+    
 
 
-    return NextResponse.json({});
+    return NextResponse.json({user: userResult[0] });
 }
