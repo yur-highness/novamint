@@ -45,9 +45,9 @@ export function AppSidebar() {
                 </p>
             )}
             {projectList.map((project) => (
-                <SidebarGroup key={projectList.id}>
+                <SidebarGroup>
                  
-                    <SidebarGroupLabel >{projectList.name}</SidebarGroupLabel>
+                    <SidebarGroupLabel >{projectList}</SidebarGroupLabel>
                     
                      </SidebarGroup>
             ))}
