@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import CustomBtn from './CustomBtn';
+
 import {  SignInButton,  SignedOut, SignedIn,UserButton, } from '@clerk/nextjs';
 
 const Header = () => {
