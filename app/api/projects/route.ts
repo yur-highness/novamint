@@ -1,9 +1,9 @@
 import db from "@/config/db";
 import { frameTables, projectTable, chatTables } from "@/config/schema";
 import { currentUser } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
+import { NextResponse,NextRequest } from "next/server";
 
-export async function POST(req:NextResponse) {
+export async function POST(req:NextRequest) {
     const { projectId,frameId,messages } = await req.json();
     const user = await currentUser();
 
@@ -30,9 +30,13 @@ export async function POST(req:NextResponse) {
                 chatMessage:messages,
                 createdBy:user?.primaryEmailAddress?.emailAddress,
          }     )
-    return NextResponse.json({ projectId,frameId,messages});
+        
     }
     catch(error){
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
-    }   
+    }
+    
+
+    return NextResponse.json({ projectId,frameId,messages});
+
 }
