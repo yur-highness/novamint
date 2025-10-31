@@ -16,10 +16,13 @@ const menuOptions = [
   return (
     <div className='flex items-center justify-between h-16 px-10 mt-2 position-fixed w-full'>
         {/* logo */}
-        <div className='flex items-center text-blue-200 gap-1.5'>
+        <Link href={"/"}>
+        <div className='flex items-center text-blue-200 gap-1.5 cursor-pointer'>
         <Image src="/logo.svg" alt="Novamint Logo" width={50} height={50} />
         <h2 className='font-bold '>Novamint</h2>
         </div>
+        </Link>
+      
         {/* menu options */}
 
         <div className='flex ml-24'>
@@ -33,10 +36,10 @@ const menuOptions = [
 
         {/* get started button */}
 
-        <div className='flex gap-4 items-center justify-center cursor-pointer '> 
+        <div className='flex gap-4 items-center justify-center  '> 
           <SignInButton mode="modal" forceRedirectUrl={'/workspace'}>
           <Link href="/workspace">
-  <button className="flex overflow-hidden items-center text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-slate-900 to-slate-70 text-white shadow hover:bg-black/90 h-9 px-4 py-4 max-w-42 whitespace-pre md:flex group relative justify-center gap-2 rounded-md transition-all duration-300 ease-out hover:ring-2 hover:ring-black hover:ring-offset-2 mr-6">
+  <button className="flex overflow-hidden items-center text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-slate-900 to-slate-70 text-white shadow hover:bg-black/90 h-9 px-4 py-4 max-w-42 whitespace-pre md:flex group relative justify-center gap-2 rounded-md transition-all duration-300 ease-out hover:ring-2 hover:ring-black hover:ring-offset-2 mr-6 cursor-pointer">
   <span
     className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40"
   ></span>

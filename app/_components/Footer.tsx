@@ -1,10 +1,11 @@
 import React from 'react'
 import Link from 'next/link';
+import { Facebook, Github, Instagram, Linkedin, } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <div className='text-shadow-indigo-400 flex items-center justify-center py-3 w-full'>
-        <div className="min-h-[70vh] flex flex-col md:flex-row items-center justify-between bg-transparent text-white px-8 md:px-24 py-20">
+    <div className='text-shadow-indigo-400 flex items-center justify-center py-3 w-full bg-black h-[70vh]'>
+        <div className="min-h-[70vh] flex flex-col md:flex-row gap-52 items-center justify-between bg-transparent text-white px-8 md:px-24 py-20">
       {/* Left Section */}
       <div className="max-w-lg space-y-6">
         <h1 className="text-5xl font-light leading-tight">
@@ -66,11 +67,13 @@ const Footer = () => {
           <p className="text-sm text-gray-400">Follow us on:</p>
           <div className="flex space-x-4 text-gray-400">
            
-<div className="group relative">
-  
- </div>{/*
-            <a href="#"><FaFacebookF className="hover:text-white" /></a>
-            <a href="#"><FaInstagram className="hover:text-white" /></a> */}
+<div className="group relative cursor-pointer flex items-center justify-center gap-14 trans rounded-full bg-gray-800 p-2 hover:bg-gray-700">
+   <Github className='hover:scale-110'/>
+ <Linkedin className='hover:scale-110'/>
+ <Facebook className='hover:scale-110'/>
+ <Instagram className='hover:scale-110'/>
+ </div>
+
           </div>
         </div>
       </div>

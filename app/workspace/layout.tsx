@@ -1,6 +1,7 @@
 import React from 'react'
-import Header from '../_components/Header'
-import Footer from '../_components/Footer'
+import { AppSidebar } from "./_components/AppSideBar";
+import { SidebarProvider,SidebarTrigger } from '@/components/ui/sidebar';
+import AppHeader from './_components/AppHeader';
 
 export default function Workspacelayout({
   children,
@@ -9,14 +10,13 @@ export default function Workspacelayout({
 }>) {
   return (
 
-   <>
-   <div className="min-h-screen overflow-hidden  bg-zinc-950 text-gray-100">
-    
-
-
-    <main>{children}</main>
-
-    </div>
-   </>
+  <SidebarProvider>
+      <AppSidebar />
+      <div className='w-full bg-zinc-950 min-h-screen text-white'>
+        <AppHeader />
+       
+        {children}
+      </div>
+    </SidebarProvider>
   );
 }

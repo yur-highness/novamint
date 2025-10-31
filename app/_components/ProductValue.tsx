@@ -17,7 +17,7 @@ const ProductValue = () => {
     <div>
         <section className="relative flex flex-col md:flex-row items-center justify-between min-h-screen bg-black text-white px-6 md:px-20">
       {/* Left content */}
-      <div className="max-w-xl">
+      <div className="max-w-xl ml-14">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
           Building digital <br /> products & brands.
         </h1>
