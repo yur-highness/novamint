@@ -6,6 +6,7 @@ import { eq } from "drizzle-orm";
 
 export async function POST(req: NextRequest) {
   const user = await currentUser();
+  console.log(user);
 
   try {
     const email = user?.primaryEmailAddress?.emailAddress;
