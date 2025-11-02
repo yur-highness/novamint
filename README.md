@@ -1,3 +1,50 @@
+# Novamint.io: A Website Generator
+
+Novamint.io is a website generator that helps teams create websites based on user prompts. It provides features such as real-time chat interface, responsive design, and integration with external APIs for additional functionality.
+
+## Features
+
+- Generate websites based on user prompts.
+- Real-time chat interface for communication.
+- Responsive design for mobile and desktop devices.
+- Integration with external APIs for additional functionality.
+
+## Installation
+
+1. Clone the repository: `git clone https://github.com/your-repo-url.git`
+2. Install dependencies: `npm install` or `yarn install`
+3. Start the development server: `npm run dev` or `yarn dev`
+
+## Usage
+
+1. Open the application in your browser: `http://localhost:3000`
+2. Enter a prompt for your website in the input field and press Enter.
+3. The application will generate a website based on the user prompt.
+4. Use the chat interface to communicate with the AI assistant.
+5. Customize the generated website using the provided options.
+
+## Configuration
+
+The following environment variables can be set in a `.env.local` file:
+
+- `NEXT_PUBLIC_API_KEY`: The API key for the OpenAI API.
+- `NEXT_PUBLIC_API_ENDPOINT`: The endpoint for the OpenAI API.
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+Your Name
+Email: your-email@example.com
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
