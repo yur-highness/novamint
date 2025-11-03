@@ -57,7 +57,7 @@ export default function HelpCenter() {
         </div>
 
         {/* Not found section */}
-        <div className="flex justify-between items-center  bg-gradient-to-r from-slate-900 to-slate-700 rounded-xl px-6 py-4 mb-12">
+        <div className="flex justify-between items-center  bg-linear-to-r from-slate-900 to-slate-700 rounded-xl px-6 py-4 mb-12">
           <p className="text-gray-300">
             Not what you were looking for? Browse through all of our Help Center articles
           </p>

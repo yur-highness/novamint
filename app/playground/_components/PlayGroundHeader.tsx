@@ -5,8 +5,7 @@ import Link from 'next/link'
 
 const PlayGroundHeader = () => {
   return (
-    <div className='w-full flex items-center justify-self-auto  gap-10 px-4 py-2 text-white'>
-       <Link href={'/'} >
+    <div className='w-full flex items-center justify-start gap-10 px-4 py-2 text-white'>       <Link href={'/'} >
         <Image src={"/logo.svg"} alt="Logo" width={32} height={32} />
         </Link>
         <h2 className="font-bold text-xl">Novamint Playground</h2>

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Textarea } from '@/components/ui/textarea';
-import { Brush, ImagePlus, ShoppingCart, ClipboardList, Users, ChartBar } from 'lucide-react';
+import { Brush, ImagePlus, ShoppingCart, ClipboardList, Users, ChartBar, Loader2Icon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SignInButton } from '@clerk/nextjs';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,8 +12,6 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 
 import { useState, } from 'react';
-import { create } from 'domain';
-
 
 const Workspace = () => {
     const[userInput, setUserInput] = useState<string>();
@@ -24,8 +22,9 @@ const Workspace = () => {
 
   const generateRandomFrameId = () => {
     const num  = Math.floor(Math.random() * 10000) ;
-    return num
+    return num;
   }
+  
 
   const  CreateNewProject  = async () => {
     setLoading(true);
@@ -57,19 +56,23 @@ const Workspace = () => {
 
   }
       const suggestions = [
-      {    label: "E-Commerce Platform",
+      {    
+        label: "E-Commerce Platform",
           prompt: "Create a platform for buying and selling products online.",
           icon: ShoppingCart
       }, 
-       {    label: "Project Management Tool",
+       {    
+        label: "Project Management Tool",
             prompt: "Develop a tool to help teams manage projects and tasks.",
             icon: ClipboardList
       }, 
-       {    label: "Social Media App",
+       {   
+         label: "Social Media App",
           prompt: "Build an app for connecting with friends and sharing content.",
           icon: Users
       },
-         {    label: "Dashboard Analytics",
+         {   
+           label: "Dashboard Analytics",
           prompt: "Design a dashboard for visualizing key performance metrics.",
           icon: ChartBar
       }
@@ -80,12 +83,12 @@ const Workspace = () => {
   <h2 className='text-center z-50 text-5xl text-white font-bold py-3.5'>Mint</h2>
 
   
-  <div className='w-7xl p-5 border rounded-2xl bg-gradient-to-r from-slate-900 to-slate-700'>
+  <div className='w-7xl p-5 border rounded-2xl bg-linear-to-r from-slate-900 to-slate-700'>
    <Textarea
   value={userInput}
   onChange={(e) => setUserInput(e.target.value)}
   className='w-full h-42 text-white py-3.5 mt-4 border-none outline-none resize-none 
-             bg-gradient-to-r from-slate-900 to-slate-700
+             bg-linear-to-r from-slate-900 to-slate-700
              focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0'
   placeholder='Describe your idea...'
 />
@@ -93,9 +96,11 @@ const Workspace = () => {
     <div className='mt-1 py-2 flex justify-between items-center'>
       <Button variant='ghost'><ImagePlus /></Button>
       <SignInButton mode="modal" forceRedirectUrl={'/workspace'}>
-      <Button variant='ghost' disabled={!userInput}
+      <Button variant='ghost' disabled={!userInput||loading }
       onClick={CreateNewProject}
-      ><Brush /></Button>
+      >
+         {loading ? <Loader2Icon className="animate-spin"/> : <Brush />}
+        </Button>
       </SignInButton>
       </div>
   </div>

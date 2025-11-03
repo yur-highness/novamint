@@ -34,7 +34,7 @@ export function AppSidebar() {
             </div>
           </Link>
             <Link href={"/workspace"} className="mt-5 w-full" >
-            <Button className="w-full cursor-pointer bg-gradient-to-r from-slate-900 to-slate-700">+ Add New Project</Button>
+            <Button className="w-full cursor-pointer bg-linear-to-r from-slate-900 to-slate-700">+ Add New Project</Button>
             </Link>
         </SidebarHeader>
       <SidebarContent className="p-2 mt-4">
@@ -65,7 +65,7 @@ export function AppSidebar() {
     <Progress value={33} max={100} className="w-full ml-2 h-5 rounded-lg bg-gray-200">
        
     </Progress>
-    <Button className="mt-4 w-full bg-gradient-to-r from-slate-900 to-slate-700 cursor-pointer"> Upgrade to Pro</Button>
+    <Button className="mt-4 w-full bg-linear-to-r from-slate-900 to-slate-700 cursor-pointer"> Upgrade to Pro</Button>
 </div>
 <div className="flex items-center justify-center">
   

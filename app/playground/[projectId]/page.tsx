@@ -8,6 +8,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import Axios from "axios";
 import { useEffect, useState } from "react";
 
+
 export type Frame = {
   frameId: string;
   projectId: string;
@@ -84,19 +85,44 @@ const playground = () => {
 
   const [generateCode, setGenerateCode] = useState<string>("");
 
+
+
+  
+
   useEffect(() => {
-    frameId&&GetFramedetails();
+    frameId && GetFramedetails();
   }, [frameId]);
 
 const GetFramedetails = async () => {
-const result  = await Axios.get(`/api/frames?frameId=${frameId}&projectId=${projectId}`)
-.then((res) => res.data).catch((err) => console.log(err));
-;
-setFramedetail(result);
+  try {
+    const res = await Axios.get('/api/frames', {
+      params: {
+        frameId,
+        projectId,
+      },
+    });
 
+    const result = res.data; // actual data from the server
+    console.log(result);
+    setFramedetail(result);
+
+    if (result?.chatResults?.length === 1) {
+      const userMsg: string = result?.chatResults[0]?.content;
+      // setMessages([{ role: "user", content: userMsg }]);
+
+          sendMessage(userMsg);  
+     
+      
+    }
+
+  } catch (error) {
+    console.error("❌ Error fetching frame details:", error);
+  }
 };
 
-  const sendMessage = async (userInput: string) => {
+
+  const sendMessage = async (userInput: string,) => {
+
     setLoading(true);
     setMessages((prevMessages: any) => [
       ...prevMessages,
@@ -157,8 +183,23 @@ setFramedetail(result);
   };
 
   useEffect(()=>{
-    console.log(generateCode)
+    console.log(generateCode);
   },[generateCode])
+
+
+  // const SaveMessages = async ()=>{
+  //     const result = await Axios.put('/api/chats', {
+  //       messages: messages,
+  //       frameId: frameId
+  //     })
+  // }
+
+
+  useEffect(() => {
+   if(messages.length > 0){
+    // SaveMessages();
+   }
+  }, [messages]);
 
   return (
     <div className="bg-zinc-950 min-h-screen gap-6 p-1">
@@ -169,6 +210,8 @@ setFramedetail(result);
             sendMessage(input);
           }}
           messages={messages ?? []}
+          loading={loading}
+         
         />
         <WebsiteDesignSection />
         <SettingsSection />

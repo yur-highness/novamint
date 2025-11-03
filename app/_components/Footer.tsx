@@ -11,7 +11,7 @@ const Footer = () => {
         <h1 className="text-5xl font-light leading-tight">
           NovaMint helps you to build your product fast.
         </h1>
-        <button className="flex overflow-hidden items-center text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-slate-900 to-slate-70 text-white shadow hover:bg-black/90 h-9 px-4 py-6 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out hover:ring-2 hover:ring-black hover:ring-offset-2">
+        <button className="flex overflow-hidden items-center text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-linear-to-r from-slate-900 to-slate-70 text-white shadow hover:bg-black/90 h-9 px-4 py-6 max-w-52 whitespace-pre md:flex group relative w-full justify-center gap-2 rounded-md transition-all duration-300 ease-out hover:ring-2 hover:ring-black hover:ring-offset-2">
   <span
     className="absolute right-0 -mt-12 h-32 w-8 translate-x-12 rotate-12 bg-white opacity-10 transition-all duration-1000 ease-out group-hover:-translate-x-40"
   ></span>
@@ -25,7 +25,7 @@ const Footer = () => {
       </div>
 
       {/* Right Section */}
-      <div className="bg-gradient-to-r from-slate-900 to-slate-700 rounded-xl p-10 mt-12 md:mt-0 md:ml-16 w-full max-w-2xl">
+      <div className="bg-linear-to-r from-slate-900 to-slate-700 rounded-xl p-10 mt-12 md:mt-0 md:ml-16 w-full max-w-2xl">
         <div className="grid grid-cols-3 gap-8 mb-8">
           {/* Column 1 */}
           <div>

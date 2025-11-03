@@ -10,8 +10,6 @@ Novamint.io is a website generator that helps teams create websites based on use
 - Integration with external APIs for additional functionality.
 
 ## Installation
-
-1. Clone the repository: `git clone https://github.com/your-repo-url.git`
 2. Install dependencies: `npm install` or `yarn install`
 3. Start the development server: `npm run dev` or `yarn dev`
 

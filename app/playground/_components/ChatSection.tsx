@@ -7,9 +7,11 @@ import { useState } from 'react'
 type props = {
   messages: Messages[]
   onSend:any
+  loading:boolean
+ 
 }
 
-const ChatSection = ({ messages , onSend }:props) => {
+const ChatSection = ({ messages , onSend, loading,  }:props) => {
 const [input, setInput] = useState<string>("");
  const handleSend = () => {
   
@@ -29,13 +31,26 @@ const [input, setInput] = useState<string>("");
           <p>No messages</p>
         ) : (
           messages.map((msg, i) => (
-            <div key={i} className={`flex ${msg.role=='user'?'justify-end':'justify-start'}`}>
-              <div className={`p-2 rounded-lg max-w-[80%]${msg.role==='user'?' bg-blue-500 text-white':' bg-gray-600'}text-white`}>
-                {msg.content}
-              </div>
-            </div>
+            <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+  <div
+    className={`p-2 rounded-lg max-w-[80%] ${
+      msg.role === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-600 text-white'
+    }`}
+  >
+    {msg.content}
+  </div>
+</div>
+
           ))
         )}
+        <div className='flex justify-center  items-center p-4'>
+          {loading&& <div
+          className='animate-spin rounded-full h-8  w-8 borber-t-2 border-b-2 border-zinc-300'>
+           
+          </div> }
+{loading&&<span className='ml-2 text-amber-50'>Generating response...</span>}
+        </div>
+    
       </div>
       <div className='pt-2 border-t flex items-center gap-2'>
        

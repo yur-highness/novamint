@@ -121,7 +121,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center m-auto w-full h-[100vh]">
+    <div className="flex flex-col items-center justify-center m-auto w-full h-screen">
       <h2 className="text-center z-50 text-5xl text-white font-bold py-3.5">
         Start your Next SAAS Product
       </h2>
@@ -129,12 +129,12 @@ const Hero = () => {
         Generate. Design. Deploy.
       </p>
 
-      <div className="w-7xl p-5 border rounded-2xl bg-gradient-to-r from-slate-900 to-slate-700">
+      <div className="w-7xl p-5 border rounded-2xl bg-linear-to-r from-slate-900 to-slate-700">
         <Textarea
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
           className="w-full h-42 text-white py-3.5 mt-4 border-none outline-none resize-none 
-             bg-gradient-to-r from-slate-900 to-slate-700
+             bg-linear-to-r from-slate-900 to-slate-700
              focus:outline-none focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
           placeholder="Describe your idea..."
         />
