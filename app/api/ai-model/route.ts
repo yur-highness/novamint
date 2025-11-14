@@ -21,8 +21,8 @@ export async function POST(req: NextRequest) {
                 headers: {
                     Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
                     "Content-Type": "application/json",
-                    "HTTP-Referer": "http://localhost:3000",
-                    "X-Title": "My Next.js App",
+                   "HTTP-Referer": process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://novamint.vercel.app",
+                    "X-Title": "Novamint",
                 },
                 responseType: "stream",
             }
