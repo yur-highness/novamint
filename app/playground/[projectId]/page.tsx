@@ -6,7 +6,7 @@ import WebsiteDesignSection from "../_components/WebsiteDesignSection";
 import SettingsSection from "../_components/SettingsSection";
 import { useParams, useSearchParams } from "next/navigation";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 
 export type Frame = {
@@ -84,33 +84,40 @@ const playground = () => {
   const [messages, setMessages] = useState<Messages[]>([]);
 
   const [generateCode, setGenerateCode] = useState<string>("");
+  const loadedOnce = useRef(false);
 
   useEffect(() => {
     frameId && GetFramedetails();
   }, [frameId]);
 
+
+
 const GetFramedetails = async () => {
   try {
     const res = await axios.get('/api/frames', {
-      params: {
-        frameId,
-        projectId,
-      },
+      params: { frameId, projectId },
     });
 
-    const result = res.data; // actual data from the server
-
+    const result = res.data;
     setFramedetail(result);
 
-    if (result?.chatResults?.length === 1) {
-      const userMsg: string = result?.chatResults[0]?.content;
-      sendMessage(userMsg);  
+    // Load previous messages safely
+    if (Array.isArray(result?.chatResults)) {
+      setMessages(result.chatResults);
+    }
+
+    // Auto-trigger AI only ONCE
+    if (!loadedOnce.current && result?.chatResults?.length === 1) {
+      loadedOnce.current = true;
+      const userMsg = result.chatResults[0].content;
+      sendMessage(userMsg);
     }
 
   } catch (error) {
     console.error("❌ Error fetching frame details:", error);
   }
 };
+
 
 
   const sendMessage = async (userInput: string,) => {
@@ -195,7 +202,7 @@ const GetFramedetails = async () => {
     SaveMessages();
   }
   console.log(generateCode);
-}, [messages,generateCode]);
+}, [messages]);
 
 
   return (
