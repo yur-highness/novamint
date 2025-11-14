@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
         const response = await axios.post(
             "https://openrouter.ai/api/v1/chat/completions",
             {
-                model: "minimax/minimax-m2:free",
+                model: "openai/gpt-oss-120b",
                 messages,
                 stream: true,
             },
@@ -51,6 +51,7 @@ export async function POST(req: NextRequest) {
                             const jsonStr = line.replace(/^data:\s*/, "");
                             try {
                                 const data = JSON.parse(jsonStr);
+                                
                                 const text = data.choices?.[0]?.delta?.content;
                                 if (text) {
                                     controller.enqueue(encoder.encode(text));

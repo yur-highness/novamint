@@ -5,7 +5,7 @@ import PlayGroundHeader from "../_components/PlayGroundHeader";
 import WebsiteDesignSection from "../_components/WebsiteDesignSection";
 import SettingsSection from "../_components/SettingsSection";
 import { useParams, useSearchParams } from "next/navigation";
-import Axios from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 
@@ -85,17 +85,13 @@ const playground = () => {
 
   const [generateCode, setGenerateCode] = useState<string>("");
 
-
-
-  
-
   useEffect(() => {
     frameId && GetFramedetails();
   }, [frameId]);
 
 const GetFramedetails = async () => {
   try {
-    const res = await Axios.get('/api/frames', {
+    const res = await axios.get('/api/frames', {
       params: {
         frameId,
         projectId,
@@ -103,16 +99,12 @@ const GetFramedetails = async () => {
     });
 
     const result = res.data; // actual data from the server
-    console.log(result);
+
     setFramedetail(result);
 
     if (result?.chatResults?.length === 1) {
       const userMsg: string = result?.chatResults[0]?.content;
-      // setMessages([{ role: "user", content: userMsg }]);
-
-          sendMessage(userMsg);  
-     
-      
+      sendMessage(userMsg);  
     }
 
   } catch (error) {
@@ -124,6 +116,7 @@ const GetFramedetails = async () => {
   const sendMessage = async (userInput: string,) => {
 
     setLoading(true);
+    
     setMessages((prevMessages: any) => [
       ...prevMessages,
       { role: "user", content: userInput },
@@ -155,7 +148,7 @@ const GetFramedetails = async () => {
   //check if AI response is code
   if (!isCode && airesponse.includes("```html")) {
     isCode = true;
-    const index = airesponse.indexOf("```html") + 7;
+    const index = airesponse.indexOf("```html") + 8;
     codeChunk = airesponse.slice(0, index);
     restChunk = airesponse.slice(index);
     setGenerateCode((prevMessages:any) => prevMessages + codeChunk);
@@ -182,24 +175,28 @@ const GetFramedetails = async () => {
     setLoading(false);
   };
 
-  useEffect(()=>{
-    console.log(generateCode);
-  },[generateCode])
 
 
-  // const SaveMessages = async ()=>{
-  //     const result = await Axios.put('/api/chats', {
-  //       messages: messages,
-  //       frameId: frameId
-  //     })
-  // }
+
+  const SaveMessages = async ()=>{
+      const result = await axios.put("/api/chats", {
+        messages: messages,
+        frameId: frameId
+      }).then((response) => {
+        return response.data
+      }).catch((error) => {
+        console.log(error);
+      });
+  }
 
 
-  useEffect(() => {
-   if(messages.length > 0){
-    // SaveMessages();
-   }
-  }, [messages]);
+ useEffect(() => {
+  if (messages.length > 0 && messages[messages.length - 1].role === "assistant") {
+    SaveMessages();
+  }
+  console.log(generateCode);
+}, [messages,generateCode]);
+
 
   return (
     <div className="bg-zinc-950 min-h-screen gap-6 p-1">
