@@ -10,9 +10,9 @@ const PlayGroundHeader = () => {
         </Link>
         <h2 className="font-bold text-xl">Novamint Playground</h2>
         <Link href={'/workspace'} >
-        <Button className='cursor-pointer'>Workspace</Button>
+        <Button className='cursor-pointer bg-neutral-50 text-black hover:bg-transparent hover:text-white hover:border-2'>Workspace</Button>
         </Link>
-        <Button className='cursor-pointer'>Save</Button>
+        <Button className='cursor-pointer bg-neutral-50 text-black hover:bg-transparent hover:text-white hover:border-2'>Save</Button>
     </div>
   )
 }

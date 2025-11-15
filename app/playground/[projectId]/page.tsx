@@ -140,8 +140,6 @@ const GetFramedetails = async () => {
     const decoder = new TextDecoder();
     let airesponse = "";
     let isCode = false;
-    let codeChunk = "";
-    let restChunk = "";
 
     while (true) {
       // @ts-ignore
@@ -155,10 +153,9 @@ const GetFramedetails = async () => {
   //check if AI response is code
   if (!isCode && airesponse.includes("```html")) {
     isCode = true;
-    const index = airesponse.indexOf("```html") + 8;
-    codeChunk = airesponse.slice(0, index);
-    restChunk = airesponse.slice(index);
-    setGenerateCode((prevMessages:any) => prevMessages + codeChunk);
+    const index = airesponse.indexOf("```html") + 7;
+    const restChunk = airesponse.slice(index);
+    setGenerateCode((prevMessages:any) => prevMessages + restChunk);
     airesponse = restChunk;
   } else if (isCode) {
     setGenerateCode((prevMessages:any) => prevMessages + chunk);
@@ -217,7 +214,7 @@ const GetFramedetails = async () => {
           loading={loading}
          
         />
-        <WebsiteDesignSection />
+        <WebsiteDesignSection generatedCode={generateCode?.replace("```", "")}/>
         <SettingsSection />
       </div>
     </div>

@@ -56,11 +56,11 @@ const [input, setInput] = useState<string>("");
        
          <textarea name="" id="" 
          onChange={(event)=>setInput(event.target.value)}
-         className='flex-1 w-full resize-none border rounded-lg px-2 py-10 focus:ouline-none focus:ring-2'
+         className='flex-1 w-full resize-none border rounded-lg px-2 py-10 focus:ouline-none focus:ring-2 bg-transparent focus:ring-white'
          placeholder='Describe your website design idea'
          value={input}
          ></textarea>
-          <Button className='mt-24 text-black cursor-pointer'
+          <Button className='mt-24 text-white cursor-pointer'
           variant={"outline"}
           onClick={handleSend}>
             <ArrowUp/>
