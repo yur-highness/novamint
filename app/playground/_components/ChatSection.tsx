@@ -25,7 +25,7 @@ const [input, setInput] = useState<string>("");
  
 
   return (
-    <div  className='w-75 m-2 h-[90vh] p-4 border-2 border-gray-100 text-white flex flex-col'>
+    <div  className='max-w-80 m-2 h-[90vh] p-4 border  rounded-xl border-gray-100 text-white flex flex-col'>
       <div className='flex-1 overflow-y-auto p-4  space-y-3 flex flex-col'>
         {messages?.length === 0 ? (
           <p>No messages</p>
@@ -60,7 +60,7 @@ const [input, setInput] = useState<string>("");
          placeholder='Describe your website design idea'
          value={input}
          ></textarea>
-          <Button className='mt-24 text-white cursor-pointer'
+          <Button className='mt-24 text-black cursor-pointer'
           variant={"outline"}
           onClick={handleSend}>
             <ArrowUp/>

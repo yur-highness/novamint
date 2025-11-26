@@ -123,7 +123,7 @@ const Hero = () => {
   return (
     <div className="flex flex-col items-center justify-center m-auto w-full h-screen">
       <h2 className="text-center z-50 text-5xl text-white font-bold py-3.5">
-        Start your Next SAAS Product
+        Start your Next SAAS Landing Page
       </h2>
       <p className="text-center z-50 text-lg text-white py-3.5">
         Generate. Design. Deploy.

@@ -7,6 +7,7 @@ import SettingsSection from "../_components/SettingsSection";
 import { useParams, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
+import { toast } from "sonner";
 
 
 export type Frame = {
@@ -101,12 +102,27 @@ const GetFramedetails = async () => {
     const result = res.data;
     setFramedetail(result);
 
+    let designCode = result?.designCode || ""; // SAFE fallback
+
+    // Prevent crashes if code block not found
+    let formatedCode = "";
+
+    if (typeof designCode === "string" && designCode.includes("```html")) {
+      const index = designCode.indexOf("```html") + 8;
+      formatedCode = designCode.slice(index);
+    } else {
+      // No code yet → leave blank instead of crashing
+      formatedCode = designCode;
+    }
+
+    setGenerateCode(formatedCode);
+
     // Load previous messages safely
     if (Array.isArray(result?.chatResults)) {
       setMessages(result.chatResults);
     }
 
-    // Auto-trigger AI only ONCE
+    // Auto-trigger AI only once
     if (!loadedOnce.current && result?.chatResults?.length === 1) {
       loadedOnce.current = true;
       const userMsg = result.chatResults[0].content;
@@ -153,7 +169,7 @@ const GetFramedetails = async () => {
   //check if AI response is code
   if (!isCode && airesponse.includes("```html")) {
     isCode = true;
-    const index = airesponse.indexOf("```html") + 7;
+    const index = airesponse.indexOf("```html") + 8;
     const restChunk = airesponse.slice(index);
     setGenerateCode((prevMessages:any) => prevMessages + restChunk);
     airesponse = restChunk;
@@ -161,7 +177,7 @@ const GetFramedetails = async () => {
     setGenerateCode((prevMessages:any) => prevMessages + chunk);
   }
 }
-
+  await saveGenratedCode(airesponse);
 
     //after streaming  end
 
@@ -176,6 +192,7 @@ const GetFramedetails = async () => {
         { role: "assistant", content: "your code is ready to use" },
       ]);
     }
+
     setLoading(false);
   };
 
@@ -198,8 +215,28 @@ const GetFramedetails = async () => {
   if (messages.length > 0 && messages[messages.length - 1].role === "assistant") {
     SaveMessages();
   }
+  // if(generateCode.length > 10 && !loading){
+  //   saveGenratedCode()
+  // }
+
   console.log(generateCode);
 }, [messages]);
+
+const saveGenratedCode=async (code:string)=>{
+  const result = await axios.put("/api/frames", {
+  designCode: code,
+  frameId: frameId,
+  projectId: projectId
+  }).then((response) => {
+    return console.log(response.data)
+  }).catch((error) => {
+    console.log(error);
+  });
+
+  // toast.success("Website is ready");
+
+}
+
 
 
   return (

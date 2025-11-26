@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import db from "@/config/db";
 import { frameTables, chatTables } from "@/config/schema";
-import { eq } from "drizzle-orm";
+import { eq,and } from "drizzle-orm";
 
 
 
@@ -30,4 +30,11 @@ export async function GET(req:NextRequest) {
 
 }
 
+
+export async function PUT(req:NextRequest) {
+    const{designCode,frameId,projectId} = await req.json();
+    const response = await db.update(frameTables).set({ designCode: designCode }).where(and(eq(frameTables.frameId, frameId),eq(frameTables.projectId,projectId)));
+
+    return  NextResponse.json({response:'updated successfully'});
+}
 
